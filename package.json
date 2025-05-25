@@ -2,9 +2,9 @@
     "name": "realtime-chat-backend",
     "version": "1.0.0",
     "description": "A real-time global chat backend with private and group messaging using Socket.IO.",
-    "main": "index.js",
+    "main": "server.js",
     "scripts": {
-      "start": "node index.js"
+      "start": "node server.js"
     },
     "keywords": ["chat", "socket.io", "realtime", "express", "group", "private", "messaging"],
     "author": "Your Name",
