@@ -19,8 +19,7 @@ const groups = new Map(); // groupId -> { name, members[], messages[] }
 
 const getConversationId = (id1, id2) => [id1, id2].sort().join('-');
 
-io.on('connection', (socket) => {
-  console.log('New connection:', socket.id);
+io.on('connection', (socket) => { 
 
   // Register user
   socket.on('register', ({ username }) => {
@@ -61,8 +60,8 @@ io.on('connection', (socket) => {
     if (!privateMessages.has(conversationId)) privateMessages.set(conversationId, []);
     privateMessages.get(conversationId).push(message);
 
-    io.to(to).emit('private-message', message);
-    socket.emit('private-message', message);
+    io.to(from).to(to).emit('private-message', message);
+
   });
 
   // Private history
@@ -87,13 +86,12 @@ io.on('connection', (socket) => {
     groups.set(groupId, group);
     io.emit('group-list', Array.from(groups.values()));
   });
-
-  // Group message
+  
   socket.on('group-message', ({ groupId, content }) => {
     const from = socket.id;
     const group = groups.get(groupId);
     if (!group || !group.members.includes(from)) return;
-
+  
     const message = {
       id: uuidv4(),
       groupId,
@@ -102,7 +100,9 @@ io.on('connection', (socket) => {
       timestamp: new Date()
     };
     group.messages.push(message);
-    group.members.forEach(memberId => io.to(memberId).emit('group-message', message));
+  
+    // Emit once to all members
+    io.to(group.members).emit('group-message', message);
   });
 
   // Group history
