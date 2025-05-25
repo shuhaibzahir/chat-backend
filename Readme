@@ -28,6 +28,6 @@ Supports private messaging, group chats, and automatic cleanup of user sessions.
 ## 📦 Installation
 
 ```bash
-git clone https://github.com/your-username/realtime-chat-backend.git
+git clone https://github.com/shuhaibzahir/realtime-chat-backend.git
 cd realtime-chat-backend
 npm install
