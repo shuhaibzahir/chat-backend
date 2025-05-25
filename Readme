@@ -1,0 +1,33 @@
+# 🌐 Real-Time Chat Backend
+
+A globally hosted real-time chat backend built with **Node.js**, **Express**, and **Socket.IO**.  
+Supports private messaging, group chats, and automatic cleanup of user sessions. All data is stored **in memory**, with **no database**.
+
+---
+
+## 🚀 Features
+
+- Global chat access — anyone using the frontend can join
+- Real-time private and group messaging
+- User presence and typing indicators
+- No database — memory-only data handling
+- Auto-removal of disconnected users
+- Group chat messages visible only to members
+
+---
+
+## 🛠️ Technologies
+
+- Node.js
+- Express
+- Socket.IO
+- UUID
+
+---
+
+## 📦 Installation
+
+```bash
+git clone https://github.com/your-username/realtime-chat-backend.git
+cd realtime-chat-backend
+npm install
